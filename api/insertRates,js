@@ -1,0 +1,6 @@
+import { insertExchangeRates } from "../insertRates.js";
+
+export default async function handler(req, res) {
+  await insertExchangeRates();
+  res.status(200).json({ message: "Exchange rates inserted" });
+}
