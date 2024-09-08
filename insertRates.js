@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 dotenv.config({ path: '.env.local' });
 
 dotenv.config();
-console.log('Database URL:', process.env.POSTGRES_URL);
+
 async function insertExchangeRates() {
   const client = new Client({
     connectionString: process.env.POSTGRES_URL,
