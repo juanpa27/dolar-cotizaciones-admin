@@ -6,7 +6,7 @@ dotenv.config({ path: '.env.local' });
 
 dotenv.config();
 
-async function insertExchangeRates() {
+export async function insertExchangeRates() {
   const client = new Client({
     connectionString: process.env.POSTGRES_URL,
     ssl: {
@@ -21,7 +21,6 @@ async function insertExchangeRates() {
     const data = await response.json();
     const rates = data.dolarpy;
     const updated = data.updated;
-    
 
     for (const [provider, values] of Object.entries(rates)) {
       const { compra, referencial_diario, venta } = values;
@@ -41,5 +40,3 @@ async function insertExchangeRates() {
     await client.end();
   }
 }
-
-insertExchangeRates();
