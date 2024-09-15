@@ -1,15 +1,21 @@
 {
   "version": 2,
   "builds": [
-    { "src": "api/**/*.js", "use": "@vercel/node" }
+    {
+      "src": "api/**/*.js", 
+      "use": "@vercel/node" 
+    }
   ],
   "routes": [
-    { "src": "/api/(.*)", "dest": "/api/$1" }
+    {
+      "src": "/api/(.*)", 
+      "dest": "/api/$1"  
+    }
   ],
   "crons": [
     {
-      "path": "/api/insertRates",
-      "schedule": "0 21 * * *"
+      "path": "/api/insertRates", 
+      "schedule": "0 21 * * *"    
     }
   ]
 }
