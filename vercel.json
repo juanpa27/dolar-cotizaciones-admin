@@ -8,6 +8,10 @@
   ],
   "routes": [
     {
+      "src": "/api/insertRates",
+      "dest": "/api/insertRates.js" 
+    },
+    {
       "src": "/api/(.*)",
       "dest": "api/index.js"
     }
