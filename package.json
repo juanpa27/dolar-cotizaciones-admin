@@ -2,14 +2,19 @@
   "name": "dolar-cotizaciones-admin",
   "version": "1.0.0",
   "type": "module",
-  "main": "insertRates.js",
+  "main": "api/index.js",
   "scripts": {
-    "start": "node insertRates.js"
+    "start": "node api/index.js",
+    "dev": "nodemon api/index.js"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.21.0",
     "node-fetch": "^3.0.0",
     "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
   }
 }
