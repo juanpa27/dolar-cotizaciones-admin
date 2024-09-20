@@ -2,7 +2,24 @@ import pool from '../models/db.js';
 
 export const getAllExchangeRates = async (req, res) => {
   try {
-    const result = await pool.query('SELECT provider, compra, venta, referencial_diario, date(updated) as updated FROM public.exchange_rates');
+    const result = await pool.query(`
+      SELECT 
+        provider, 
+        compra, 
+        venta, 
+        referencial_diario, 
+        updated::date AS updated
+      FROM public.exchange_rates AS er
+      WHERE updated >= (current_date - interval '7 days')
+      AND (updated, provider) IN (
+        SELECT MAX(updated), provider
+        FROM public.exchange_rates
+        WHERE updated >= (current_date - interval '7 days')
+        GROUP BY provider, updated::date
+      )
+      ORDER BY updated DESC
+    `);
+    
 
     const groupedData = result.rows.reduce((acc, row) => {
       const { provider, compra, venta,referencial_diario, updated } = row;
