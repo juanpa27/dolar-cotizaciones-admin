@@ -1,10 +1,15 @@
 import express from 'express';
-import { getAllExchangeRates } from '../controllers/generalController.js'; // Asegúrate de incluir la extensión .js en los imports
+import { getAllExchangeRates,
+    getExchangeRatesByProvider,
+    getExchangeRatesByDate
+ } from '../controllers/generalController.js'; 
 
 const router = express.Router();
 
 // Definir la ruta
 router.get('/', getAllExchangeRates);
+router.get('/provider/:provider', getExchangeRatesByProvider); 
+router.get('/date/:date', getExchangeRatesByDate);
 
-// Exportar el router usando export default
+
 export default router;
